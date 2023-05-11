@@ -14,11 +14,8 @@ const Nav = () => {
     (async () => {
       const response = await getProviders();
       setProviders(response);
-      console.log(new Date())
     })();
   }, []);
-
-  console.log("sessionData",session)
 
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
@@ -37,11 +34,13 @@ const Nav = () => {
       <div className='sm:flex hidden'>
         {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
-            <Link href='/create-prompt' className='black_btn'>
+            <Link href='/createPrompt' className='black_btn'>
               Create Post
             </Link>
 
-            <button type='button' className='outline_btn'>
+            <button type='button' className='outline_btn' onClick={() => {
+                    signOut();
+                  }}>
               Sign Out
             </button>
 
@@ -97,7 +96,7 @@ const Nav = () => {
                   My Profile
                 </Link>
                 <Link
-                  href='/create-prompt'
+                  href='/createPrompt'
                   className='dropdown_link'
                   onClick={() => setToggleDropdown(false)}
                 >
